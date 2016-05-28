@@ -27,6 +27,10 @@ gem 'responders', '~> 2.0'
 
 gem 'active_model_serializers'
 
+gem 'bcrypt'
+
+gem 'andand'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
