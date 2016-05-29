@@ -1,0 +1,16 @@
+development:
+  #base_url: https://rest.developer.yodlee.com/services/srest/restserver/v1.0
+  base_url: https://developer.api.yodlee.com:443/ysl/restserver/v1/
+  cob_username: sbCoblendzoan.test
+  cob_password: 834c7cff-493f-4727-bb33-e6b69f52ed02
+  user_name: sbMemlendzoan.test1
+  user_password: sbMemlendzoan.test1#123 
+  register_users: false
+test:
+  #base_url: https://rest.developer.yodlee.com/services/srest/restserver/v1.0
+  base_url: https://developer.api.yodlee.com:443/ysl/restserver/v1/
+  cob_username: sbCoblendzoan.test
+  cob_password: 834c7cff-493f-4727-bb33-e6b69f52ed02
+  user_name: sbMemlendzoan.test1
+  user_password: sbMemlendzoan.test1#123 
+  register_users: false
