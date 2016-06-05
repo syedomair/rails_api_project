@@ -21,7 +21,7 @@ module RequestAuth
         return
       end
 
-      commonErrorResponse( {:message => 'Invalid API Key', :app_error_code => 1002})if _apiKey != "12345"
+      commonErrorResponse( {:message => 'Invalid API Key', :app_error_code => 1002})if !ApiKey.authenticateApiKey(_apiKey)
 
     end
 

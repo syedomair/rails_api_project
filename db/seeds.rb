@@ -1,3 +1,4 @@
+ApiKey.create("company_name"=>"Test Company Name", 'api_key'=>'secret_key', 'status'=>'1')
 Catalog.create("name"=>"Test Catalog Name")
 Category.create("catalogs_id"=>1, "name"=>"Men")
 Category.create("catalogs_id"=>1, "name"=>"Women")

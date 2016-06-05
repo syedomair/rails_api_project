@@ -5,7 +5,8 @@ describe Api::V1::PublicController do
 
   user_email = FFaker::Internet.email
   user_password =  Base64.encode64('12345')
-  api_key = "12345"
+  api_key = "secret_key"
+  api_key_invalid = "123456"
   #access_type = "secured"
   access_type = "public"
 
@@ -21,10 +22,8 @@ describe Api::V1::PublicController do
     end
 
     it "check API key"do
-      api_key = "12345Invalid" 
-      
       user_attributes = { "email":user_email , "password":user_password , "password_confirmation":user_password }
-      token = "custom_auth api_key=\"#{api_key}\", access_type=\"#{access_type}\", user_email=\"#{user_email}\", password=\"#{user_password}\"" 
+      token = "custom_auth api_key=\"#{api_key_invalid}\", access_type=\"#{access_type}\", user_email=\"#{user_email}\", password=\"#{user_password}\"" 
 
       request.headers["HTTP_SO_AUTH"] = token
       post :signup, {user:user_attributes} , format: :json 
@@ -34,7 +33,6 @@ describe Api::V1::PublicController do
 
     it "check password and password_confirmation are same"do
       invalid_password = "123456" 
-      api_key = "12345"
       
       user_attributes = { "email":user_email , "password":user_password , "password_confirmation":invalid_password }
       token = "custom_auth api_key=\"#{api_key}\", access_type=\"#{access_type}\", user_email=\"#{user_email}\", password=\"#{user_password}\"" 
@@ -47,7 +45,6 @@ describe Api::V1::PublicController do
     end
 
     it "check email validity (no email) "do
-      api_key = "12345"
       #user_attributes = { "email":user_email+".com" , "password":user_password , "password_confirmation":user_password }
       user_attributes = {  "password":user_password , "password_confirmation":user_password }
       token = "custom_auth api_key=\"#{api_key}\", access_type=\"#{access_type}\", user_email=\"#{user_email}\", password=\"#{user_password}\"" 
@@ -60,7 +57,6 @@ describe Api::V1::PublicController do
     end
 
     it "check email validity (invalid email) "do
-      api_key = "12345"
       user_attributes = { "email":user_email+" .com" , "password":user_password , "password_confirmation":user_password }
       token = "custom_auth api_key=\"#{api_key}\", access_type=\"#{access_type}\", user_email=\"#{user_email}\", password=\"#{user_password}\"" 
 
@@ -73,7 +69,6 @@ describe Api::V1::PublicController do
     end
 
     it "success "do
-      api_key = "12345"
       user_attributes = { "email":user_email , "password":user_password , "password_confirmation":user_password }
       token = "custom_auth api_key=\"#{api_key}\", access_type=\"#{access_type}\", user_email=\"#{user_email}\", password=\"#{user_password}\"" 
 
@@ -86,7 +81,6 @@ describe Api::V1::PublicController do
   
   describe "signin" do
     it "invalid password "do
-      api_key = "12345"
       access_type = "secured"
       invalidPassword = "123"
       token = "custom_auth api_key=\"#{api_key}\", access_type=\"#{access_type}\", user_email=\"#{user_email}\", password=\"#{invalidPassword}\"" 

@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521072120) do
+ActiveRecord::Schema.define(version: 20160603071208) do
+
+  create_table "api_keys", force: :cascade do |t|
+    t.string "company_name", limit: 255
+    t.string "status",       limit: 255
+    t.string "api_key",      limit: 255
+  end
 
   create_table "catalogs", force: :cascade do |t|
     t.string "name", limit: 255, null: false
