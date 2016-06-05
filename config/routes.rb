@@ -5,14 +5,21 @@ Rails.application.routes.draw do
     namespace :api do
       scope module: :v1 do
         resources :catalogs, :only => [:show, :create] 
-        resources :users, :only => [:create] 
-        resources :public, :only=>[:signup, :signin] do 
+        resources :users, :only => [:signin] do
+          collection do
+            post 'signin'
+          end
+        end
+        resources :public, :only=>[:signup, 'list_categories', 'list_products', 'get_product' ] do 
           collection do
             post 'signup'
-            post 'signin'
+            get 'categories/catalog:id', :to => 'public#categories'
+            get 'products/category:id', :to => 'public#products'
+            get 'products/:id', :to => 'public#product'
           end
         end
       end
     end
   end
 end
+

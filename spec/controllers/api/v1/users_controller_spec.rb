@@ -3,27 +3,36 @@ require "base64"
 
 describe Api::V1::UsersController do
 
-  describe "Testing create method" do
-    it " it checks  post create method "do
+  user_email = 'syedkhalidomair@gmail.com'
+  user_password =  Base64.encode64('12345')
+  api_key = "secret_key"
+  access_type = "secured"
 
-      @user_email = FFaker::Internet.email
-      @user_password = "12345"
-      @api_key = "12345"
-      
-      #@user_password = @user_password.encrypt(:symmetric, :password => 'secret_key')
-      @user_password = Base64.encode64(@user_password);
-      
-      @user_attributes = { "email":@user_email , "password":@user_password , "confirm_password":@user_password }
-      #"Name is #{name}, ID is #{id}"
-      token = "custom_auth api_key=\"#{@api_key}\", user_email=\"#{@user_email}\", password=\"#{@user_password}\"" 
-      puts token
+  describe "signin" do
+    it "invalid password "do
+      invalidPassword = "123"
+      token = "custom_auth api_key=\"#{api_key}\", access_type=\"#{access_type}\", user_email=\"#{user_email}\", password=\"#{invalidPassword}\"" 
+
       request.headers["HTTP_SO_AUTH"] = token
-      post :create, {user:@user_attributes} , format: :json 
+      post :signin, {} , format: :json 
       json_response = JSON.parse(response.body, symbolize_names: true)
-      expect(json_response[:email]).to eql @user_email
-      
-      #it { should respond_with 200 } 
-      puts "Test response.body=> #{response.body}"  
+      #puts json_response
+      expect(json_response[:data][:app_error_code]).to eql 1004
+      expect(json_response[:data][:message]).to eql %Q(Invalid email/password)
     end
+
+#    it "valid password "do
+#      access_type = "secured"
+#      user_attributes = { "email":user_email , "password":user_password }
+#      token = "custom_auth api_key=\"#{api_key}\", access_type=\"#{access_type}\", user_email=\"#{user_email}\", password=\"#{user_password}\"" 
+#
+#      request.headers["HTTP_SO_AUTH"] = token
+#      post :signin, {user:user_attributes} , format: :json 
+#      json_response = JSON.parse(response.body, symbolize_names: true)
+#      puts json_response
+#      expect(json_response[:data][:user_email]).to eql user_email
+#    end
   end
+
+
 end

@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
     render json: responseHash.to_json
   end
 
-  def commonSucessResponse(data)
+
+  def commonSuccessResponse(data)
     commonResponse('success', data, 200)
   end
 
@@ -18,6 +19,29 @@ class ApplicationController < ActionController::Base
     commonResponse('error', data, error_code)
   end
 
+  def commonArrayResponse(list, count)
+    commonSuccessResponse({:list=>list, :count=>count})
+  end
+
+  def commonUserResponse(user)
+    user = {:user_id => user.id, :user_email => user.email}
+  end
+
+  def commonCategoryResponse(category)
+    category = {:id => category.id, :name => category.name, :catalog_name => category.name}
+  end
+
+  def commonProductResponse(product)
+    product = {:id => product.id, 
+            :catalog_name => product.name,
+            :category_name => product.name,
+            :name => product.name,
+            :sku => product.sku,
+            :price => product.price,
+            :short_description => product.short_description,
+            :image => product.image
+           }
+  end
  
  # CUSTOM EXCEPTION HANDLING
   rescue_from Exception do |e|
