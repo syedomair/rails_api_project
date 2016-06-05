@@ -1,4 +1,5 @@
-class Api::V1::PublicController < ApplicationController
+class Api::V1::PublicController < SecuredApplicationController
+#class Api::V1::PublicController < ApplicationController
   protect_from_forgery with: :null_session
 
   def signup
