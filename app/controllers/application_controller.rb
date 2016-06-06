@@ -28,13 +28,13 @@ class ApplicationController < ActionController::Base
   end
 
   def commonCategoryResponse(category)
-    category = {:id => category.id, :name => category.name, :catalog_name => category.name}
+    category = {:id => category.id, :name => category.name, :catalog_name => category.catalog.name }
   end
 
   def commonProductResponse(product)
     product = {:id => product.id, 
-            :catalog_name => product.name,
-            :category_name => product.name,
+            :catalog_name => product.category.catalog.name,
+            :category_name => product.category.name,
             :name => product.name,
             :sku => product.sku,
             :price => product.price,
