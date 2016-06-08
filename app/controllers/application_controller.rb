@@ -24,7 +24,11 @@ class ApplicationController < ActionController::Base
   end
 
   def commonUserResponse(user)
-    user = {:user_id => user.id, :user_email => user.email}
+    user = {:user_id => user.id, 
+            :user_email => user.email, 
+            :first_name => user.first_name, 
+            :last_name => user.last_name 
+           }
   end
 
   def commonCategoryResponse(category)
@@ -39,7 +43,8 @@ class ApplicationController < ActionController::Base
             :sku => product.sku,
             :price => product.price,
             :short_description => product.short_description,
-            :image => product.image
+            :image => product.image,
+            :featured => product.featured
            }
   end
  

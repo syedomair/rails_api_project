@@ -16,6 +16,7 @@ Rails.application.routes.draw do
             get 'categories/catalog:id', :to => 'public#categories'
             get 'products/category:id', :to => 'public#products'
             get 'products/:id', :to => 'public#product'
+            get 'products-featured', :to => 'public#product_featured'
           end
         end
       end

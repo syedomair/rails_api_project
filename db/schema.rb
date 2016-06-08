@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603071208) do
+ActiveRecord::Schema.define(version: 20160608092100) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string "company_name", limit: 255
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20160603071208) do
     t.string  "price",             limit: 32
     t.string  "short_description", limit: 255
     t.string  "image",             limit: 32
+    t.boolean "featured"
   end
 
   add_index "products", ["categories_id"], name: "IDX_D34A04AD12469DE2", using: :btree
@@ -47,6 +48,8 @@ ActiveRecord::Schema.define(version: 20160603071208) do
     t.string   "salt",               limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name",         limit: 255
+    t.string   "last_name",          limit: 255
   end
 
   add_foreign_key "categories", "catalogs", column: "catalogs_id", name: "FK_64C19C1CC3C66FC"

@@ -33,6 +33,14 @@ class Api::V1::PublicController < ApplicationController
     commonSuccessResponse(commonProductResponse(product))
   end
 
+  def product_featured
+    rtnList=[]
+    products = Product.where(featured: true).all
+    products.each do |product|
+      rtnList = rtnList.push(commonProductResponse(product))
+    end
+    commonArrayResponse(rtnList, rtnList.count)
+  end
 
   private
     def user_params
