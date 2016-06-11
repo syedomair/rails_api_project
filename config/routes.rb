@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   # We are going to list our resources here
     namespace :api do
       scope module: :v1 do
-        resources :catalogs, :only => [:show, :create] 
-        resources :users, :only => [:signin] do
+        resources :catalogs, :only => [:show] 
+        resources :users, :only => [:signin, :get_user] do
           collection do
             post 'signin'
+            get 'users/:id', :to => 'users#show'
+            patch 'users/:id', :to => 'users#update'
           end
         end
         resources :public, :only=>[:signup, 'list_categories', 'list_products', 'get_product' ] do 
