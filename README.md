@@ -1,9 +1,4 @@
 # rails_api_project
 
-to run spec
-bundle exec rspec spec/controllers/api/v1/catalogs_controller_spec.rb 
-
-On Browser
-http://localhost:3000/api/catalogs/1
-returns
-{"id":1,"name":"Test Catalog Name"}
+Please run this project on port 3001 because the client application get connected through this port. 
+rails s -p 3001
