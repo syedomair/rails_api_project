@@ -2,7 +2,6 @@ ApiKey.create("company_name"=>"Test Company Name", 'api_key'=>'secret_key', 'sta
 Catalog.create("name"=>"Test Catalog Name")
 Category.create("catalogs_id"=>1, "name"=>"Men")
 Category.create("catalogs_id"=>1, "name"=>"Women")
-Category.create("catalogs_id"=>1, "name"=>"Children")
 Product.create("categories_id"=>1, "name"=>"Men Shirts Dress Khaki", "sku"=>"EW239", "price"=>"46.99", "short_description"=>"The description for Men Shirt Dress Khaki", "image"=>"mens_shirts_dresscas_Dkhaki.gif","featured"=>1)
 Product.create("categories_id"=>1, "name"=>"Men Pants Dress", "sku"=>"FD320", "price"=>"45.99", "short_description"=>"The description for Men Pants Dress", "image"=>"mens_pants_dress.gif","featured"=>1)
 Product.create("categories_id"=>1, "name"=>"Men Pants Cords", "sku"=>"HG875", "price"=>"10.99", "short_description"=>"The description for Men Pants Cords", "image"=>"mens_pants_cords.gif")
